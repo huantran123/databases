@@ -9,8 +9,9 @@
     "node": ">=4.0.0"
   },
   "scripts": {
-    "start": "node ./server/app.js",
+    "start": "nodemon ./server/app.js",
     "start:es6": "npx babel-node ./server/app.js",
+    "start:client": "npx live-server",
     "test": "jest --watch",
     "lint": "eslint ./"
   },
