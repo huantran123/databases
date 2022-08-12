@@ -7,7 +7,7 @@ var RoomsView = {
 
     RoomsView.$select.on('change', RoomsView.handleChange);
     RoomsView.$button.on('click', RoomsView.handleClick);
-      },
+  },
 
   render: function() {
 
@@ -34,8 +34,17 @@ var RoomsView = {
       Rooms.add(roomname, () => {
         RoomsView.render();
         MessagesView.render();
+        var message = {
+          username: App.username,
+          text: `${roomname} was created.`,
+          roomname
+        };
+        Parse.create(message, (data) => {
+          _.extend(message, data[0]);
+          App.fetch();
+        });
       });
     }
-      }
+  }
 
 };

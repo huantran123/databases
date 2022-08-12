@@ -13,14 +13,14 @@ module.exports = {
     );
   }, // a function which produces all the messages
   create: function (message, callback) {
-    var {username, message, roomname} = message;
+    var {username, text, roomname} = message;
     var querySring = 'INSERT INTO messages(username, text, roomname) VALUES(?, ?, ?)';
-    var queryArgs = [username, message, roomname];
+    var queryArgs = [username, text, roomname];
     db.connection.query(querySring, queryArgs, (err) => {
       if (err) {
         callback(err);
       } else {
-        callback(null, {username, message, roomname});
+        callback(null, {username, text, roomname});
       }
     });
   } // a function which can be used to insert a message into the database

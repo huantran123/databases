@@ -7,7 +7,6 @@ module.exports = {
         // res.end('error');
         res.sendStatus(400);
       } else {
-        console.log(messages);
         res.status(200).json(messages);
       }
     });

@@ -14,7 +14,6 @@ module.exports.app = app;
 // Set what we are listening on.
 app.set('port', 3000);
 
-console.log('Checking');
 
 // Logging and parsing
 app.use(morgan('dev'));
