@@ -10,7 +10,6 @@ module.exports = {
         var messArr = messages.map((mess) => {
           return mess.dataValues;
         });
-        console.log(messArr);
         res.status(200).json(messArr);
       }
     });

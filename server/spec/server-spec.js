@@ -117,4 +117,69 @@ describe('Persistent Node Chat Server', () => {
         });
     });
   });
+
+
+  it('Should assign a default username when it is not specified', (done) => {
+    // const username = undefiend;
+    const username = '';
+    const text = 'This is the test for default username';
+    const roomname = 'Hello';
+    // Create a user on the chat server database.
+    axios.post(`${API_URL}/users`, { username })
+      .then(() => {
+        // Post a message to the node chat server:
+        return axios.post(`${API_URL}/messages`, { username, text, roomname });
+      })
+      .then(() => {
+        // Now if we look in the database, we should find the posted message there.
+
+        /* TODO: You might have to change this test to get all the data from
+         * your message table, since this is schema-dependent. */
+        const queryString = 'SELECT * FROM Messages';
+        const queryArgs = [];
+
+        dbConnection.query(queryString, queryArgs, (err, results) => {
+          if (err) {
+            throw err;
+          }
+
+          // TODO: If you don't have a column named text, change this test.
+          expect(results[3].username).toEqual('anonymous');
+          done();
+        });
+      })
+      .catch((err) => {
+        throw err;
+      });
+  });
+
+  it('Should store all users in database', (done) => {
+    const username = 'newuserX';
+    const text = 'hey!!';
+    const roomname = 'testroom';
+    axios.post(`${API_URL}/users`, { username })
+      .then(() => {
+        return axios.post(`${API_URL}/messages`, { username, text, roomname });
+      })
+      .then(() => {
+        const queryString = 'SELECT * FROM Messages';
+        const queryArgs = [];
+
+        dbConnection.query(queryString, queryArgs, (err, results) => {
+          if (err) {
+            throw err;
+          }
+          // Should have five results:
+          expect(results.length).toEqual(5);
+
+          done();
+        });
+      })
+      .catch((err) => {
+        throw err;
+      });
+  });
+
+
+
 });

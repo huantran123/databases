@@ -42,7 +42,9 @@ module.exports = {
       });
   },
   create: function(newUser, callback) {
+    console.log('req body: ', newUser);
     var {username} = newUser;
+    username = (username === '') ? 'anonymous' : username;
     db.User.create({username})
       .then(() => {
         callback(null, {username});

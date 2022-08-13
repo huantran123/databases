@@ -41,6 +41,7 @@ module.exports = {
 
   create: function(newMessage, callback) {
     var {username, text, roomname} = newMessage;
+    username = (username === '') ? 'anonymous' : username;
     db.Message.create({username, text, roomname})
       .then(() => {
         callback(null, {username, text, roomname});
