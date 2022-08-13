@@ -7,7 +7,11 @@ module.exports = {
         // res.end('error');
         res.sendStatus(400);
       } else {
-        res.status(200).json(messages);
+        var messArr = messages.map((mess) => {
+          return mess.dataValues;
+        });
+        console.log(messArr);
+        res.status(200).json(messArr);
       }
     });
   }, // a function which handles a get request for all messages

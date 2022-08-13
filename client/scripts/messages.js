@@ -16,7 +16,7 @@ var Messages = {
     var length = Object.keys(Messages._data).length;
 
     for (let message of messages) {
-      Messages._data[message.message_id] = Messages._conform(message);
+      Messages._data[message.id] = Messages._conform(message);
     }
 
     // only invoke the callback if something changed
@@ -32,5 +32,5 @@ var Messages = {
     message.roomname = message.roomname || '';
     return message;
   }
-  
+
 };

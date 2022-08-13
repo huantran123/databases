@@ -16,7 +16,7 @@ describe('Persistent Node Chat Server', () => {
   beforeAll((done) => {
     dbConnection.connect();
 
-    const tablename = 'messages'; // TODO: fill this out
+    const tablename = 'Messages'; // TODO: fill this out
 
     /* Empty the db table before all tests so that multiple tests
      * (or repeated runs of the tests)  will not fail when they should be passing
@@ -43,7 +43,7 @@ describe('Persistent Node Chat Server', () => {
 
         /* TODO: You might have to change this test to get all the data from
          * your message table, since this is schema-dependent. */
-        const queryString = 'SELECT * FROM messages';
+        const queryString = 'SELECT * FROM Messages';
         const queryArgs = [];
 
         dbConnection.query(queryString, queryArgs, (err, results) => {
@@ -68,7 +68,7 @@ describe('Persistent Node Chat Server', () => {
     const username = 'Chuck';
     const text = 'This is the test';
     const roomname = 'Chuck\'s room';
-    const queryString = 'INSERT INTO messages(username, text, roomname) VALUES(?, ?, ?)';
+    const queryString = 'INSERT INTO Messages(username, text, roomname) VALUES(?, ?, ?)';
     const queryArgs = [username, text, roomname];
     /* TODO: The exact query string and query args to use here
      * depend on the schema you design, so I'll leave them up to you. */
@@ -81,6 +81,7 @@ describe('Persistent Node Chat Server', () => {
       axios.get(`${API_URL}/messages`)
         .then((response) => {
           const messageLog = response.data;
+          console.log(messageLog);
           expect(messageLog[1].text).toEqual(text);
           expect(messageLog[1].roomname).toEqual(roomname);
           done();
@@ -95,7 +96,7 @@ describe('Persistent Node Chat Server', () => {
   it('Should output a message with no text if posted message does not have text', (done) => {
     const username = 'Lala';
     const roomname = 'Test';
-    const queryString = 'INSERT INTO messages(username, roomname) VALUES(?, ?)';
+    const queryString = 'INSERT INTO Messages(username, roomname) VALUES(?, ?)';
     const queryArgs = [username, roomname];
 
     dbConnection.query(queryString, queryArgs, (err) => {

@@ -22,7 +22,7 @@
     "jquery": "^3.6.0",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5",
+    "sequelize": "^6.21.3",
     "underscore": "^1.13.4"
   },
   "devDependencies": {

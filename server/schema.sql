@@ -6,25 +6,26 @@ USE chat;
 --   /* Describe your table here.*/
 -- );
 
-CREATE TABLE messages (
-  message_id INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE Messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(20) NOT NULL,
   text TEXT,
   roomname VARCHAR(20),
-  PRIMARY KEY (message_id )
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 /* Create other tables and define schemas for them here! */
-CREATE TABLE users (
-  user_id INTEGER NOT NULL AUTO_INCREMENT,
-  username VARCHAR(20) NOT NULL,
-  PRIMARY KEY (user_id)
+CREATE TABLE Users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(30) NOT NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE rooms (
-  room_id INTEGER NOT NULL AUTO_INCREMENT,
-  roomname VARCHAR(20) NOT NULL,
-  PRIMARY KEY (room_id)
+CREATE TABLE Rooms (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  roomname VARCHAR(30) NOT NULL
 );
 
 

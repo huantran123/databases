@@ -29,5 +29,4 @@ var FormView = {
     var status = active ? 'true' : null;
     FormView.$form.find('input[type=submit]').attr('disabled', status);
   }
-
 };
